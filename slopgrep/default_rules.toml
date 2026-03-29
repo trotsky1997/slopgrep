@@ -1,0 +1,699 @@
+[[rules]]
+id = "ai.significance.inflation"
+language = "generic"
+message = "Inflated significance or legacy framing"
+severity = "warning"
+pattern = "(?i)\\b(testament to|pivotal moment|key turning point|marks? a shift|reflects broader|underscores? (?:its |their )?(?:importance|significance)|lasting legacy|evolving landscape|indelible mark)\\b"
+description = "Grandiose framing that inflates the importance of ordinary facts"
+category = "grandiosity"
+weight = 3
+
+[[rules]]
+id = "ai.notability.media-list"
+language = "generic"
+message = "Media-list notability padding"
+severity = "info"
+pattern = "(?i)\\b(cited in|featured in|covered by)\\b.{0,120}\\b(New York Times|BBC|Financial Times|The Verge|Wired|The Hindu)\\b"
+description = "Lists media outlets as a proxy for significance"
+category = "notability"
+weight = 2
+
+[[rules]]
+id = "ai.analysis.participle-tail"
+language = "generic"
+message = "Shallow -ing analysis tail"
+severity = "warning"
+pattern = "(?i),\\s*(highlighting|underscoring|emphasizing|reflecting|symbolizing|contributing to|ensuring|fostering|cultivating|showcasing)\\b"
+description = "Adds fake depth with a trailing participle clause"
+category = "analysis"
+weight = 3
+
+[[rules]]
+id = "ai.promo.language"
+language = "generic"
+message = "Promotional or brochure-like language"
+severity = "warning"
+pattern = "(?i)\\b(nestled|breathtaking|must-visit|stunning|vibrant town|rich cultural heritage|renowned for|groundbreaking|in the heart of)\\b"
+description = "Salesy adjectives common in AI-generated descriptions"
+category = "promo"
+weight = 3
+
+[[rules]]
+id = "ai.attribution.vague"
+language = "generic"
+message = "Vague attribution without a source"
+severity = "warning"
+pattern = "(?i)\\b(experts argue|experts believe|observers have cited|industry reports suggest|some critics argue|several publications)\\b"
+description = "Invokes unnamed authorities instead of specific sourcing"
+category = "attribution"
+weight = 3
+
+[[rules]]
+id = "ai.challenges.template"
+language = "generic"
+message = "Formulaic 'despite challenges' structure"
+severity = "warning"
+pattern = "(?i)\\bdespite (?:its|these|their) [^.]{0,120} challenges?\\b"
+description = "Common AI section template that acknowledges problems then pivots"
+category = "template"
+weight = 3
+
+[[rules]]
+id = "ai.vocab.delve"
+language = "generic"
+message = "Overused AI vocabulary"
+severity = "info"
+pattern = "(?i)\\b(delve|delving|certainly|utilize|leverage|robust|streamline|harness|intricate|tapestry|ecosystem|paradigm|synergy)\\b"
+description = "High-frequency AI wording that clusters in generated prose"
+category = "vocabulary"
+weight = 1
+
+[[rules]]
+id = "ai.vocab.landscape"
+language = "generic"
+message = "Abstract landscape/tapestry phrasing"
+severity = "info"
+pattern = "(?i)\\b(landscape of|tapestry of|ever-evolving landscape|complex landscape)\\b"
+description = "Ornate abstract nouns where plain wording would do"
+category = "vocabulary"
+weight = 2
+
+[[rules]]
+id = "ai.copula.avoidance"
+language = "generic"
+message = "Copula avoidance with 'serves as' or similar"
+severity = "info"
+pattern = "(?i)\\b(serves as|stands as|marks a|represents a|boasts|features)\\b"
+description = "Swaps simple 'is/are/has' for puffed-up alternatives"
+category = "syntax"
+weight = 2
+
+[[rules]]
+id = "ai.parallelism.negative"
+language = "generic"
+message = "Negative parallelism / false reframe"
+severity = "warning"
+pattern = "(?i)\\b(it'?s not|this isn'?t|the question isn'?t|not because)\\b"
+description = "Overused 'it's not X, it's Y' pattern"
+category = "structure"
+weight = 3
+
+[[rules]]
+id = "ai.countdown.not-x-not-y"
+language = "generic"
+message = "Dramatic 'Not X. Not Y. Just Z.' pattern"
+severity = "warning"
+pattern = "(?is)\\bnot\\s+[^.?!]{1,40}[.?!]\\s+not\\s+[^.?!]{1,40}[.?!](?:\\s+just\\s+[^.?!]{1,60})?"
+description = "Tension-building countdown pattern common in AI prose"
+category = "structure"
+weight = 4
+
+[[rules]]
+id = "ai.rhetorical.result-question"
+language = "generic"
+message = "Rhetorical reveal question"
+severity = "info"
+pattern = "(?i)\\b(?:the result|the worst part|the scary part|the catch|the point)\\?\\s+[A-Z]"
+description = "Detects self-answered rhetorical reveal questions common in AI writing"
+category = "structure"
+weight = 2
+
+[[rules]]
+id = "ai.rhetorical.just-z"
+language = "generic"
+message = "'Not X. Not Y. Just Z.' dramatic countdown"
+severity = "warning"
+pattern = "(?is)\\bnot\\s+[^.?!]{1,40}[.?!]\\s+not\\s+[^.?!]{1,40}[.?!]\\s+just\\s+[^.?!]{1,70}[.?!]?"
+description = "Detects the dramatic narrowing pattern highlighted by trope catalogs"
+category = "structure"
+weight = 4
+
+[[rules]]
+id = "ai.rhetorical.the-x-a-y"
+language = "generic"
+message = "Rhetorical question-answer flourish"
+severity = "info"
+pattern = "(?i)\\bthe [A-Za-z][^.?!:]{0,40}\\?\\s+(?:A|An|The)\\s"
+description = "Self-posed question followed by an instant answer"
+category = "structure"
+weight = 2
+
+[[rules]]
+id = "ai.anaphora.repeated-openings"
+language = "generic"
+message = "Repeated sentence openings"
+severity = "info"
+pattern = "(?is)\\b(They|We|This|It|The model|The system|The tool)\\s+[^.?!]{1,80}[.?!]\\s+\\1\\s+[^.?!]{1,80}[.?!]\\s+\\1\\s+"
+description = "Detects anaphora-heavy repetition often produced by generated prose"
+category = "structure"
+weight = 3
+
+[[rules]]
+id = "ai.transition.kicker"
+language = "generic"
+message = "Artificial suspense transition"
+severity = "info"
+pattern = "(?i)\\b(here's the kicker|here's the thing|here's where it gets interesting|here's what most people miss|here's the deal)\\b"
+description = "Teacher-mode or suspense-building transition"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.transition.most-people-miss"
+language = "generic"
+message = "'What most people miss' transition"
+severity = "info"
+pattern = "(?i)\\b(here'?s what most people miss|what most people miss is|the part people miss is)\\b"
+description = "Detects stock insight-signaling transitions common in AI explanations"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.transition.lets-be-honest"
+language = "generic"
+message = "Confessional transition"
+severity = "info"
+pattern = "(?i)\\b(let'?s be honest|if we'?re being honest|honestly,? this is)\\b"
+description = "Detects faux-candid transitions used to simulate voice"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.transition.truth"
+language = "generic"
+message = "Truth/reality signpost"
+severity = "info"
+pattern = "(?i)\\b(the truth is|the reality is|the simple truth is|what most people miss is)\\b"
+description = "Detects heavy-handed signposting of insight or clarity"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.transition.at-its-core"
+language = "generic"
+message = "Abstract core/essence transition"
+severity = "info"
+pattern = "(?i)\\b(at its core|at the heart of this|fundamentally, this is|what this means is)\\b"
+description = "Detects abstract explanatory pivots often overused by AI prose"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.analogy.think-of-it-as"
+language = "generic"
+message = "Patronizing analogy setup"
+severity = "info"
+pattern = "(?i)\\b(think of it as|think of it like|it'?s like asking|imagine a world where)\\b"
+description = "Analogy framing strongly associated with AI explanatory voice"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.futurism.imagine-world"
+language = "generic"
+message = "Futurist invitation setup"
+severity = "info"
+pattern = "(?i)\\bimagine a world where\\b"
+description = "Detects speculative setup phrasing common in AI essays and pitches"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.vulnerability.false"
+language = "generic"
+message = "Performative vulnerability"
+severity = "info"
+pattern = "(?i)\\b(and yes,? (?:i'?m|since we'?re being honest)|this is not a rant; it'?s a diagnosis)\\b"
+description = "Detects polished self-awareness tropes used to simulate authenticity"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.break-this-down"
+language = "generic"
+message = "Hand-holding explainer transition"
+severity = "info"
+pattern = "(?i)\\b(let'?s break this down|let'?s unpack this|let'?s explore|let'?s dive in)\\b"
+description = "Pedagogical framing that often sounds synthetic"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.teacher.unpack"
+language = "generic"
+message = "Teacher-mode unpacking phrase"
+severity = "info"
+pattern = "(?i)\\b(let'?s unpack this|let'?s take a step back|to understand why|the easiest way to think about this is)\\b"
+description = "Detects teacher-mode explanatory crutches common in AI writing"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.teacher.step-by-step"
+language = "generic"
+message = "Step-by-step explainer framing"
+severity = "info"
+pattern = "(?i)\\b(step by step|one step at a time|let'?s walk through this|let'?s start with the basics)\\b"
+description = "Detects hand-holding instructional framing common in generated prose"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.summary.fractal"
+language = "generic"
+message = "Section-summary or recap template"
+severity = "info"
+pattern = "(?i)\\b(in this section, we(?:'ll| will)|as we have seen in this section|and so we return to where we began)\\b"
+description = "Detects recursive signposted summaries common in generated long-form text"
+category = "template"
+weight = 2
+
+[[rules]]
+id = "ai.fragment.short-punchy"
+language = "generic"
+message = "Stacked short punchy fragments"
+severity = "info"
+pattern = "(?is)\\b[A-Z][^.?!]{1,18}[.?!]\\s+[A-Z][^.?!]{1,18}[.?!]\\s+[A-Z][^.?!]{1,18}[.?!]"
+description = "Detects multiple short emphatic sentences stacked together"
+category = "structure"
+weight = 2
+
+[[rules]]
+id = "ai.recap.restatement"
+language = "generic"
+message = "Recap or restatement phrasing"
+severity = "info"
+pattern = "(?i)\\b(this is what matters|that is the real point|and that matters because|the point here is simple)\\b"
+description = "Detects over-signaled recap and restatement patterns"
+category = "template"
+weight = 2
+
+[[rules]]
+id = "ai.subtext.explained"
+language = "generic"
+message = "Explains subtext explicitly"
+severity = "info"
+pattern = "(?i)\\b(feeling a strong desire to|which shows that|which means that|making it clear that|revealing that)\\b"
+description = "Detects AI-style over-explanation of implications or emotional states"
+category = "template"
+weight = 2
+
+[[rules]]
+id = "ai.sensory.fake"
+language = "generic"
+message = "Generic sensory description without concrete anchor"
+severity = "info"
+pattern = "(?i)\\b(smooth texture|warm glow|gentle hum|soft scent|quiet intensity|subtle presence)\\b"
+description = "Detects generic sensory phrasing often used without real embodied detail"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.personification.callback"
+language = "generic"
+message = "Personified object callback"
+severity = "info"
+pattern = "(?i)\\b(the (?:room|house|door|pan|wall|street|window|engine|screen) (?:remembered|knew|held|watched|whispered|refused))\\b"
+description = "Detects strained object-personification tropes common in AI attempts at literary voice"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.truth.simple"
+language = "generic"
+message = "Asserts simplicity instead of showing it"
+severity = "info"
+pattern = "(?i)\\b(the truth is simple|the reality is simpler|history is clear|the real story is)\\b"
+description = "Claim of obviousness or privileged insight"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.stakes.inflation"
+language = "generic"
+message = "Grandiose stakes inflation"
+severity = "warning"
+pattern = "(?i)\\b(fundamentally reshape|define the next era|transformative potential|entirely new|reshape how we think about everything)\\b"
+description = "Inflates ordinary claims to epochal importance"
+category = "grandiosity"
+weight = 3
+
+[[rules]]
+id = "ai.listicle.trenchcoat"
+language = "generic"
+message = "Listicle disguised as prose"
+severity = "info"
+pattern = "(?i)\\b(the first wall|the second wall|the third wall|the second takeaway|the third takeaway|the fourth takeaway)\\b"
+description = "Sequential enumerations disguised as prose"
+category = "structure"
+weight = 2
+
+[[rules]]
+id = "ai.listicle.ordered-prose"
+language = "generic"
+message = "Ordered-point prose template"
+severity = "info"
+pattern = "(?is)\\b(the first(?: takeaway| point| reason| wall)? is|the second(?: takeaway| point| reason| wall)? is|the third(?: takeaway| point| reason| wall)? is)\\b"
+description = "Detects listicle structure disguised as prose"
+category = "structure"
+weight = 3
+
+[[rules]]
+id = "ai.contrast.manufactured"
+language = "generic"
+message = "Manufactured contrast pattern"
+severity = "info"
+pattern = "(?i)\\b(on the surface|at first glance|but look closer|but beneath that|the deeper issue is)\\b"
+description = "Detects over-signaled contrast and reveal structure"
+category = "structure"
+weight = 2
+
+[[rules]]
+id = "ai.equivocation.seesaw"
+language = "generic"
+message = "Balanced seesaw phrasing"
+severity = "info"
+pattern = "(?i)\\b(?:while|although|though)\\b[^.?!]{0,90}\\b(?:it is important to note that|it should be noted that|there are also|it also)\\b"
+description = "Detects over-balanced sentence structures that hedge immediately after making a point"
+category = "structure"
+weight = 3
+
+[[rules]]
+id = "ai.contrast.seems-but"
+language = "generic"
+message = "Low-information seems/but contrast"
+severity = "info"
+pattern = "(?i)\\b(?:it may seem|this may seem|on the surface)\\b[^.?!]{0,80}\\bbut\\b"
+description = "Detects pseudo-insight contrast that signals depth without adding much content"
+category = "structure"
+weight = 2
+
+[[rules]]
+id = "ai.abstraction.disembodied"
+language = "generic"
+message = "Abstract/disembodied wording cluster"
+severity = "info"
+pattern = "(?i)\\b(comprehensive|foundational|nuanced|landscape|framework|dynamic|transformative|meaningful|professional|facilitate|demonstrate|utilize)\\b"
+description = "Tracks abstraction-heavy wording often associated with disembodied AI prose"
+category = "vocabulary"
+weight = 1
+
+[[rules]]
+id = "ai.tone.corporate-safe"
+language = "generic"
+message = "Corporate-safe sanitized tone"
+severity = "info"
+pattern = "(?i)\\b(vital|crucial|dynamic|professional|meaningful|valuable|appropriate|effective|supportive|responsible|thoughtful|aligned|dependable|value-driven|best practices)\\b"
+description = "Tracks sanitized, HR-safe wording often associated with harmless-filtered AI prose"
+category = "tone"
+weight = 1
+
+[[rules]]
+id = "ai.filler.noting"
+language = "generic"
+message = "Filler transition"
+severity = "info"
+pattern = "(?i)\\b(it'?s worth noting|it bears mentioning|importantly|interestingly|notably)\\b"
+description = "Low-information transition or signpost"
+category = "filler"
+weight = 1
+
+[[rules]]
+id = "ai.chatbot.artifact"
+language = "generic"
+message = "Chatbot correspondence artifact"
+severity = "warning"
+pattern = "(?i)\\b(i hope this helps|let me know if you'?d like|of course!|certainly!|great question!|you'?re absolutely right!)\\b"
+description = "Assistant-style conversational scaffolding left in the prose"
+category = "chatbot"
+weight = 4
+
+[[rules]]
+id = "ai.knowledge.cutoff"
+language = "generic"
+message = "Knowledge-cutoff disclaimer"
+severity = "warning"
+pattern = "(?i)\\b(up to my last training update|based on available information|while specific details are limited|as of \\d{4})\\b"
+description = "Stock AI disclaimer about incomplete knowledge"
+category = "chatbot"
+weight = 4
+
+[[rules]]
+id = "ai.hedging.excessive"
+language = "generic"
+message = "Excessive hedging"
+severity = "info"
+pattern = "(?i)\\b(could potentially possibly|might have some effect|it could be argued that|appears to have been)\\b"
+description = "Over-qualified phrasing that avoids clear claims"
+category = "hedging"
+weight = 2
+
+[[rules]]
+id = "ai.conclusion.signposted"
+language = "generic"
+message = "Signposted conclusion"
+severity = "info"
+pattern = "(?i)\\b(in conclusion|to sum up|in summary)\\b"
+description = "Template-style conclusion marker"
+category = "template"
+weight = 2
+
+[[rules]]
+id = "ai.summary.overall"
+language = "generic"
+message = "Generic recap transition"
+severity = "info"
+pattern = "(?i)\\b(overall,|taken together,|put simply,|in other words,)\\b"
+description = "Detects generic recap transitions that often stack in AI writing"
+category = "template"
+weight = 1
+
+[[rules]]
+id = "ai.chatbot.refusal"
+language = "generic"
+message = "AI self-reference or refusal artifact"
+severity = "warning"
+pattern = "(?i)\\b(as an ai language model|as a large language model|i cannot offer medical advice|i can'?t directly add content to wikipedia)\\b"
+description = "Detects classic AI self-reference and refusal remnants"
+category = "chatbot"
+weight = 5
+
+[[rules]]
+id = "ai.chatbot.continue-generating"
+language = "generic"
+message = "Continue-generating artifact"
+severity = "info"
+pattern = "(?i)\\bcontinue generating\\b|Final important tip:|Would you like me to(?: continue| turn this into| format this)"
+description = "Detects UI or continuation artifacts from pasted chatbot sessions"
+category = "chatbot"
+weight = 3
+
+[[rules]]
+id = "ai.unicode.decoration"
+language = "generic"
+message = "Unicode decoration or smart punctuation"
+severity = "info"
+pattern = "[→“”‘’]"
+description = "Unicode arrows or smart quotes commonly produced by AI tools"
+category = "formatting"
+weight = 1
+
+[[rules]]
+id = "ai.emdash.addiction"
+language = "generic"
+message = "Em dash usage"
+severity = "info"
+pattern = "—"
+description = "Em dashes are often overused in AI prose"
+category = "formatting"
+weight = 1
+
+[[rules]]
+id = "ai.boldfirst.bullet"
+language = "generic"
+message = "Bold-first bullet formatting"
+severity = "info"
+pattern = "(?m)^\\s*[-*]\\s+\\*\\*[^*]+\\*\\*:?"
+description = "Markdown list style frequently emitted by chatbots"
+category = "formatting"
+weight = 2
+
+[[rules]]
+id = "ai.zh.significance"
+language = "zh"
+message = "中文：夸大意义或历史地位"
+severity = "warning"
+pattern = "(标志着[^，。；]{0,20}(关键时刻|转变)|更广泛的运动|不可磨灭的印记|不断演变的格局|至关重要的作用|彰显了其重要性)"
+description = "中文常见的意义拔高模板"
+category = "grandiosity"
+weight = 3
+
+[[rules]]
+id = "ai.zh.analysis"
+language = "zh"
+message = "中文：肤浅分析尾巴"
+severity = "warning"
+pattern = "(反映了[^，。；]{0,30}|象征着[^，。；]{0,30}|彰显[^，。；]{0,30}|展示了[^，。；]{0,30})"
+description = "中文中常见的虚假升华语句"
+category = "analysis"
+weight = 3
+
+[[rules]]
+id = "ai.zh.promo"
+language = "zh"
+message = "中文：宣传或文旅口吻"
+severity = "warning"
+pattern = "(充满活力的|丰富的文化遗产|令人叹为观止|迷人的自然美景|位于[^，。；]{0,15}中心|著名的)"
+description = "中文常见的宣传式套话"
+category = "promo"
+weight = 3
+
+[[rules]]
+id = "ai.zh.attribution"
+language = "zh"
+message = "中文：模糊归因"
+severity = "warning"
+pattern = "(专家认为|观察者指出|行业报告显示|一些批评者认为|多个来源)"
+description = "没有具体来源的模糊归因"
+category = "attribution"
+weight = 3
+
+[[rules]]
+id = "ai.zh.challenges"
+language = "zh"
+message = "中文：挑战与未来展望模板"
+severity = "warning"
+pattern = "(尽管[^，。；]{0,30}面临[^，。；]{0,20}挑战|尽管存在这些挑战|未来展望|挑战与遗产)"
+description = "中文常见的模板化过渡段"
+category = "template"
+weight = 3
+
+[[rules]]
+id = "ai.zh.vocab"
+language = "zh"
+message = "中文：高频 AI 词汇"
+severity = "info"
+pattern = "(此外|至关重要|深入探讨|持久的|增强|培养|相互作用|复杂性|关键性的|织锦|宝贵的|框架|体系|机制)"
+description = "中文 AI 腔常见高频词"
+category = "vocabulary"
+weight = 1
+
+[[rules]]
+id = "ai.zh.seesaw"
+language = "zh"
+message = "中文：平衡木式让步句"
+severity = "info"
+pattern = "(虽然[^。；]{0,40}(但是|但|不过)|尽管[^。；]{0,40}(但|仍|却))"
+description = "中文 AI 写作常见的先让步、后立即平衡的句式"
+category = "structure"
+weight = 2
+
+[[rules]]
+id = "ai.zh.contrast"
+language = "zh"
+message = "中文：表面/深层对照话术"
+severity = "info"
+pattern = "(表面上看|乍看之下|更深层的问题在于|真正值得关注的是)"
+description = "中文 AI 文本常见的伪洞见式对照句"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.zh.safe-tone"
+language = "zh"
+message = "中文：过度安全/平滑语气"
+severity = "info"
+pattern = "(积极作用|重要价值|稳步推进|持续提升|有效支撑|良好效果|合理路径|最佳实践|平稳落地|有序推进|积极意义)"
+description = "中文 AI 文本常见的安全、平滑、汇报式口吻"
+category = "tone"
+weight = 1
+
+[[rules]]
+id = "ai.zh.transition"
+language = "zh"
+message = "中文：套路化过渡语"
+severity = "info"
+pattern = "(换句话说|归根结底|从某种意义上说|这也意味着|值得注意的是|总体而言|更进一步地|在此基础上)"
+description = "中文 AI 写作中常见的套路化过渡和总结语"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.zh.crutch"
+language = "zh"
+message = "中文：推断/升格拐杖词"
+severity = "info"
+pattern = "(某种程度上|不难发现|可以说|由此可见|这并不意味着|进一步来看|从这个角度看)"
+description = "中文 AI 写作中常见的推断、升格与总结拐杖词"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.zh.abstract-summary"
+language = "zh"
+message = "中文：抽象总结句"
+severity = "info"
+pattern = "(其核心在于|本质上是|更重要的是|真正的问题在于|可以看到)"
+description = "中文 AI 写作中常见的抽象总结和升格句式"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.zh.teacher-mode"
+language = "zh"
+message = "中文：讲解式手把手口吻"
+severity = "info"
+pattern = "(我们可以先看|先来看|不妨把它理解为|要理解这一点|可以从三个方面来理解)"
+description = "中文 AI 文本中常见的讲解式、教学式引导语"
+category = "tone"
+weight = 2
+
+[[rules]]
+id = "ai.zh.ordered-prose"
+language = "zh"
+message = "中文：提纲式顺序展开"
+severity = "info"
+pattern = "(第一，|第二，|第三，|首先，|其次，|最后，)"
+description = "中文 AI 文本常见的提纲式、讲义式顺序展开"
+category = "structure"
+weight = 2
+
+[[rules]]
+id = "ai.zh.parallelism"
+language = "zh"
+message = "中文：否定式排比"
+severity = "warning"
+pattern = "(不仅仅是[^，。；]{0,30}而是[^，。；]{0,30}|这不仅仅是[^，。；]{0,30})"
+description = "中文常见的“不是 X，而是 Y”套式"
+category = "structure"
+weight = 3
+
+[[rules]]
+id = "ai.zh.chatbot"
+language = "zh"
+message = "中文：聊天机器人话术残留"
+severity = "warning"
+pattern = "(希望这对您有帮助|如果您想让我扩展|当然！|一定！|您说得完全正确|请告诉我)"
+description = "助手机器人口吻残留在正文中"
+category = "chatbot"
+weight = 4
+
+[[rules]]
+id = "ai.zh.hedging"
+language = "zh"
+message = "中文：过度限定或回避"
+severity = "info"
+pattern = "(可以潜在地可能被认为|似乎是在|基于可用信息|虽然具体细节有限)"
+description = "过度保守、啰嗦的回避表达"
+category = "hedging"
+weight = 2
+
+[[rules]]
+id = "ai.zh.conclusion"
+language = "zh"
+message = "中文：空泛积极结尾"
+severity = "info"
+pattern = "(未来看起来光明|激动人心的时代即将到来|向正确方向迈出的重要一步)"
+description = "中文常见的空泛乐观收束"
+category = "template"
+weight = 2

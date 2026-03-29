@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "slopgrep"
+version = "0.1.0"
+description = "Semgrep-like scanner for AI writing tells"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Codex" }]
+keywords = ["ai-writing", "lint", "nlp", "semgrep", "style"]
+
+[project.urls]
+Homepage = "https://github.com/trotsky1997/slopgrep"
+Repository = "https://github.com/trotsky1997/slopgrep"
+
+[project.scripts]
+slopgrep = "slopgrep.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["slopgrep*"]
+
+[tool.setuptools.package-data]
+slopgrep = ["default_rules.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
